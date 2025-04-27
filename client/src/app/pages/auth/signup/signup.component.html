@@ -1,0 +1,34 @@
+<div class="signup-container">
+  <div class="form-group">
+    <label for="fname">First name</label>
+    <input type="text" id="fname" />
+  </div>
+
+  <div class="form-group">
+    <label for="lname">Last name</label>
+    <input type="text" id="lname" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Old Password</label>
+    <input type="password" id="password" />
+  </div>
+
+  <div class="form-group">
+    <label for="confirmPassword">New Password</label>
+    <input type="password" id="confirmPassword" />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit">Sign Up</button>
+  </div>
+
+  <div class="sign-in">
+    Already have an account? &nbsp; <a [routerLink]="['/login']">Sign In</a>
+  </div>
+</div>
