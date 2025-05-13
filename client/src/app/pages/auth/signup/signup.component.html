@@ -1,34 +1,46 @@
-<div class="signup-container">
-  <div class="form-group">
-    <label for="fname">First name</label>
-    <input type="text" id="fname" />
+<div class="signup">
+  <div class="signup__header">
+    <h1 class="signup__title">Quick Chat</h1>
   </div>
 
-  <div class="form-group">
-    <label for="lname">Last name</label>
-    <input type="text" id="lname" />
-  </div>
+  <div class="signup__box">
+    <h2 class="signup__heading">Create Account</h2>
+    <!-- <p class="signup__info">Already have an account?</p> -->
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" />
-  </div>
+    <form class="signup__form" action="">
+      <div class="signup__form-group">
+        <label class="signup__label" for="fname">First name</label>
+        <input class="signup__input" type="text" id="fname" />
+      </div>
 
-  <div class="form-group">
-    <label for="password">Old Password</label>
-    <input type="password" id="password" />
-  </div>
+      <div class="signup__form-group">
+        <label class="signup__label" for="lname">Last name</label>
+        <input class="signup__input" type="text" id="lname" />
+      </div>
 
-  <div class="form-group">
-    <label for="confirmPassword">New Password</label>
-    <input type="password" id="confirmPassword" />
-  </div>
+      <div class="signup__form-group">
+        <label class="signup__label" for="email">Email</label>
+        <input class="signup__input" type="email" id="email" />
+      </div>
 
-  <div class="form-actions">
-    <button type="submit">Sign Up</button>
-  </div>
+      <div class="signup__form-group">
+        <label class="signup__label" for="password">Old Password</label>
+        <input class="signup__input" type="password" id="password" />
+      </div>
 
-  <div class="sign-in">
-    Already have an account? &nbsp; <a [routerLink]="['/login']">Sign In</a>
+      <div class="signup__form-group">
+        <label class="signup__label" for="confirmPassword">New Password</label>
+        <input class="signup__input" type="password" id="confirmPassword" />
+      </div>
+
+      <div class="signup__actions">
+        <button class="btn" type="submit">Sign Up</button>
+      </div>
+
+      <div class="signup__signin">
+        Already have an account? &nbsp;
+        <a [routerLink]="['/login']">Sign In</a>
+      </div>
+    </form>
   </div>
 </div>

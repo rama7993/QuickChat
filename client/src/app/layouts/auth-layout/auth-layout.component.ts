@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-auth-layout',
   imports: [RouterModule],
   templateUrl: './auth-layout.component.html',
-  styleUrl: './auth-layout.component.scss'
+  styleUrl: './auth-layout.component.scss',
 })
-export class AuthLayoutComponent {
-
-}
+export class AuthLayoutComponent {}

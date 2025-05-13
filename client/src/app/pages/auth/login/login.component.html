@@ -1,26 +1,37 @@
-<div class="login-container">
-  <form>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="email.@companyname.com" />
-    </div>
+<div class="login">
+  <header class="login__header">
+    <h1 class="login__title">Quick Chat</h1>
+  </header>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" />
-    </div>
+  <section class="login__box">
+    <h2 class="login__heading">Login to your Account</h2>
+    <p class="login__subtext">Enter your email and password to continue</p>
 
-    <div class="forgot-password">
-      <a [routerLink]="['/forgot-password']">Forgot Password?</a>
-    </div>
+    <form class="login__form">
+      <div class="login__form-group">
+        <label for="email" class="login__label">Email</label>
+        <input type="email" id="email" class="login__input" />
+      </div>
 
-    <div class="form-actions">
-      <button type="submit">Sign In</button>
-    </div>
+      <div class="login__form-group">
+        <label for="password" class="login__label">Password</label>
+        <input type="password" id="password" class="login__input" />
+      </div>
 
-    <div class="sign-up">
-      Don't have an account?&nbsp;
-      <a [routerLink]="['/signup']">Sign Up</a>
-    </div>
-  </form>
+      <div class="login__forgot">
+        <a [routerLink]="['/forgot-password']" class="login__link"
+          >Forgot Password?</a
+        >
+      </div>
+
+      <div class="login__actions">
+        <button type="submit" class="login__button btn">Sign In</button>
+      </div>
+
+      <div class="login__signup">
+        Don't have an account?
+        <a [routerLink]="['/signup']" class="login__link">Sign Up</a>
+      </div>
+    </form>
+  </section>
 </div>

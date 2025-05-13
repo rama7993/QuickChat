@@ -1,6 +1,140 @@
-.form-container {
-  height: 100vh;
+.login {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+
+  &__header {
+    width: 100%;
+    background-color: var(--primary);
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  &__box {
+    background-color: #fff;
+    margin-top: -2rem;
+    padding: 2rem 3rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 40rem;
+  }
+
+  &__heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtext {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  &__form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__label {
+    flex: 0 0 100px;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
+
+    @media (max-width: 480px) {
+      flex: none;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.4rem;
+    background-color: #f5f5f5;
+
+    &:focus {
+      outline: none;
+      border-color: #211e37;
+    }
+  }
+
+  &__forgot {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  &__link {
+    color: #211e37;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__signup {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+
+    .login__link {
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__box {
+      padding: 1.5rem 1.2rem;
+      margin-top: -1rem;
+    }
+
+    &__heading {
+      font-size: 1.3rem;
+    }
+
+    &__subtext {
+      font-size: 0.9rem;
+    }
+
+    &__button {
+      font-size: 0.95rem;
+      padding: 0.6rem 1.25rem;
+    }
+  }
 }
