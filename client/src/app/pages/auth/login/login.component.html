@@ -4,28 +4,60 @@
   </header>
 
   <section class="login__box">
-    <h2 class="login__heading">Login to your Account</h2>
-    <p class="login__subtext">Enter your email and password to continue</p>
+    <h2 class="login__heading">Welcome Back</h2>
+    <p class="login__subtext">Log in to resume your conversations.</p>
 
-    <form class="login__form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
       <div class="login__form-group">
-        <label for="email" class="login__label">Email</label>
-        <input type="email" id="email" class="login__input" />
+        <label for="email" class="login__label">
+          Email <span class="text-danger">*</span>
+        </label>
+        <input
+          pInputText
+          type="email"
+          id="email"
+          class="login__input"
+          formControlName="email"
+          [ngClass]="{ 'ng-invalid ng-touched': isInvalid('email') }"
+        />
+        <div class="login__error" *ngIf="email.touched && email.invalid">
+          <small class="text-danger" *ngIf="email.errors?.['required']"
+            >Email is required</small
+          >
+          <small class="text-danger" *ngIf="email.errors?.['email']"
+            >Invalid email address</small
+          >
+        </div>
       </div>
 
       <div class="login__form-group">
-        <label for="password" class="login__label">Password</label>
-        <input type="password" id="password" class="login__input" />
-      </div>
-
-      <div class="login__forgot">
-        <a [routerLink]="['/forgot-password']" class="login__link"
-          >Forgot Password?</a
-        >
+        <label for="password" class="login__label">
+          Password <span class="text-danger">*</span>
+        </label>
+        <div class="login__password-wrapper">
+          <input
+            pInputText
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            class="login__input"
+            formControlName="password"
+            [ngClass]="{ 'ng-invalid ng-touched': isInvalid('password') }"
+          />
+          <i
+            class="pi password-toggle"
+            [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </div>
+        <div class="login__error" *ngIf="password.touched && password.invalid">
+          <small class="text-danger" *ngIf="password.errors?.['required']"
+            >Password is required</small
+          >
+        </div>
       </div>
 
       <div class="login__actions">
-        <button type="submit" class="login__button btn">Sign In</button>
+        <button type="submit" class="login__button btn" pButton>Sign In</button>
       </div>
 
       <div class="login__signup">

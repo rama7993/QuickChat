@@ -1,1 +1,45 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="chat-header">Chat Room</div>
+
+  <div class="chat-messages">
+    <ng-container *ngFor="let group of groupedMessages">
+      <div class="chat-date">{{ group.date }}</div>
+      <ng-container *ngFor="let msg of group.messages">
+        <div class="chat-message" [class.self]="msg.sender === currentUser">
+          <img
+            class="avatar"
+            [src]="msg.avatarUrl || defaultAvatar"
+            alt="avatar"
+          />
+          <div class="bubble">
+            <div class="message-content">{{ msg.content }}</div>
+            <div class="message-meta">
+              <small>{{ msg.sender }}</small>
+              <small>{{ msg.timestamp | date : "shortTime" }}</small>
+              <span *ngIf="msg.sender === currentUser" class="status">✓</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="typing-indicator" *ngIf="isTyping">
+      <img [src]="typingAvatar" class="avatar" alt="typing" />
+      <div class="bubble typing"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <form class="chat-input" (ngSubmit)="sendMessage()">
+    <input
+      [(ngModel)]="messageText"
+      name="message"
+      required
+      placeholder="Message..."
+      (input)="handleTyping()"
+    />
+
+    <button type="submit" class="btn" [disabled]="!messageText.trim()">
+      Send
+    </button>
+  </form>
+</div>

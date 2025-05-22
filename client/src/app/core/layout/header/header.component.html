@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="header__main">
+    <h2>QuickChat</h2>
+  </div>
+
+  <div class="header__actions">
+    <div class="header__notification">
+      <i class="pi pi-bell"></i>
+      <span class="header__badge">3</span>
+    </div>
+
+    <p-menu #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
+
+    <div
+      class="header__profile"
+      (click)="userMenu.toggle($event)"
+      style="cursor: pointer"
+    >
+      <img src="https://i.pravatar.cc/150?img=32" alt="Profile" />
+      <div class="header__user-info">
+        <span class="header__name">{{ fullName }}</span>
+        <span class="header__role">
+          Admin <i class="pi pi-chevron-down"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

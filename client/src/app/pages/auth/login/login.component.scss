@@ -22,7 +22,7 @@
   &__box {
     background-color: #fff;
     margin-top: -2rem;
-    padding: 2rem 3rem;
+    padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -43,64 +43,75 @@
     margin-bottom: 2rem;
   }
 
-  &__form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.25rem;
-
-    @media (max-width: 480px) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  &__label {
-    flex: 0 0 100px;
-    font-weight: 500;
-    color: #333;
-    font-size: 0.95rem;
-
-    @media (max-width: 480px) {
-      flex: none;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &__input {
-    flex: 1;
+  &__form {
     width: 100%;
-    padding: 0.6rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.4rem;
-    background-color: #f5f5f5;
+  }
 
-    &:focus {
-      outline: none;
-      border-color: #211e37;
+  &__form-group {
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    .login__label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .login__input,
+    .p-inputtext {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.4rem;
+      background-color: #f5f5f5;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      &.ng-invalid.ng-dirty,
+      &.ng-invalid.ng-touched {
+        border-color: red;
+        background-color: #fff0f0;
+      }
     }
   }
 
-  &__forgot {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0.75rem 0 1.5rem;
+  &__password-wrapper {
+    position: relative;
+
+    .login__input {
+      padding-right: 2.5rem;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
   }
 
-  &__link {
-    color: #211e37;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &__error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
 
   &__actions {
     display: flex;
     justify-content: center;
+    margin-top: 1rem;
+
+    .login__button {
+      width: 100%;
+      max-width: 200px;
+    }
   }
 
   &__signup {
@@ -111,6 +122,18 @@
 
     .login__link {
       font-weight: bold;
+      margin-left: 0.25rem;
+    }
+  }
+
+  &__link {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
@@ -120,7 +143,7 @@
     }
 
     &__box {
-      padding: 1.5rem 1.2rem;
+      padding: 1.5rem;
       margin-top: -1rem;
     }
 
@@ -130,11 +153,6 @@
 
     &__subtext {
       font-size: 0.9rem;
-    }
-
-    &__button {
-      font-size: 0.95rem;
-      padding: 0.6rem 1.25rem;
     }
   }
 }

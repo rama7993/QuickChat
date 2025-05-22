@@ -4,42 +4,93 @@
   </div>
 
   <div class="signup__box">
-    <h2 class="signup__heading">Create Account</h2>
-    <!-- <p class="signup__info">Already have an account?</p> -->
+    <h2 class="signup__heading">Join Us</h2>
+    <p class="signup__info">Sign up to chat, share, and stay connected.</p>
 
-    <form class="signup__form" action="">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup__form">
+      <!-- First Name -->
       <div class="signup__form-group">
-        <label class="signup__label" for="fname">First name</label>
-        <input class="signup__input" type="text" id="fname" />
+        <label for="fname" class="signup__label">
+          First name <span class="required">*</span>
+        </label>
+        <input
+          id="fname"
+          type="text"
+          class="signup__input"
+          [ngClass]="{ 'ng-invalid ng-touched': isInvalid('fname') }"
+          formControlName="fname"
+        />
+        <small *ngIf="isInvalid('fname')" class="signup__error"
+          >First name is required</small
+        >
       </div>
 
+      <!-- Last Name -->
       <div class="signup__form-group">
-        <label class="signup__label" for="lname">Last name</label>
-        <input class="signup__input" type="text" id="lname" />
+        <label for="lname" class="signup__label">
+          Last name <span class="required">*</span>
+        </label>
+        <input
+          id="lname"
+          type="text"
+          class="signup__input"
+          [ngClass]="{ 'ng-invalid ng-touched': isInvalid('lname') }"
+          formControlName="lname"
+        />
+        <small *ngIf="isInvalid('lname')" class="signup__error"
+          >Last name is required</small
+        >
       </div>
 
+      <!-- Email -->
       <div class="signup__form-group">
-        <label class="signup__label" for="email">Email</label>
-        <input class="signup__input" type="email" id="email" />
+        <label for="email" class="signup__label">
+          Email <span class="required">*</span>
+        </label>
+        <input
+          id="email"
+          type="email"
+          class="signup__input"
+          [ngClass]="{ 'ng-invalid ng-touched': isInvalid('email') }"
+          formControlName="email"
+        />
+        <small *ngIf="isInvalid('email')" class="signup__error"
+          >Valid email is required</small
+        >
       </div>
 
+      <!-- Password -->
       <div class="signup__form-group">
-        <label class="signup__label" for="password">Old Password</label>
-        <input class="signup__input" type="password" id="password" />
+        <label for="password" class="signup__label">
+          Password <span class="required">*</span>
+        </label>
+        <div class="signup__password-wrapper">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            class="signup__input"
+            [ngClass]="{ 'ng-invalid ng-touched': isInvalid('password') }"
+            formControlName="password"
+          />
+          <i
+            class="pi"
+            [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </div>
+        <small *ngIf="isInvalid('password')" class="signup__error"
+          >Password must be at least 6 characters</small
+        >
       </div>
 
-      <div class="signup__form-group">
-        <label class="signup__label" for="confirmPassword">New Password</label>
-        <input class="signup__input" type="password" id="confirmPassword" />
-      </div>
-
+      <!-- Submit -->
       <div class="signup__actions">
         <button class="btn" type="submit">Sign Up</button>
       </div>
 
+      <!-- Redirect -->
       <div class="signup__signin">
-        Already have an account? &nbsp;
-        <a [routerLink]="['/login']">Sign In</a>
+        Already have an account? <a [routerLink]="['/login']">Sign In</a>
       </div>
     </form>
   </div>

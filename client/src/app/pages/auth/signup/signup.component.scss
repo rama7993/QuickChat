@@ -1,3 +1,7 @@
+@use 'sass:color';
+
+$primary: #3498db;
+
 .signup {
   display: flex;
   flex-direction: column;
@@ -8,7 +12,7 @@
   &__header {
     background-color: var(--primary);
     width: 100%;
-    padding: 3rem 0;
+    padding: 3rem 1rem;
     display: flex;
     justify-content: center;
   }
@@ -45,28 +49,61 @@
 
   &__form-group {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+
+    .signup__label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 0.4rem;
+    }
+
+    .signup__input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.4rem;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background-color: #f5f5f5;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      &.ng-invalid.ng-dirty,
+      &.ng-invalid.ng-touched {
+        border-color: red;
+        background-color: #fff0f0;
+      }
+    }
+
+    .signup__error {
+      width: 100%;
+      font-size: 0.85rem;
+      color: red;
+      margin-top: 0.25rem;
+    }
+  }
+
+  &__password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
     align-items: center;
-    margin-bottom: 1rem;
-  }
 
-  &__label {
-    flex: 0 0 130px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: #333;
-  }
+    .signup__input {
+      padding-right: 2.5rem;
+    }
 
-  &__input {
-    flex: 1;
-    padding: 0.6rem 0.75rem;
-    border-radius: 0.4rem;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    background-color: #f5f5f5;
-
-    &:focus {
-      outline: none;
-      border-color: var(--primary);
+    i {
+      position: absolute;
+      right: 0.75rem;
+      cursor: pointer;
+      color: var(--accent, #999);
+      font-size: 1.2rem;
     }
   }
 
@@ -115,16 +152,16 @@
     }
 
     &__form-group {
-      flex-direction: column;
-      align-items: flex-start;
-
       .signup__label {
-        flex: unset;
         margin-bottom: 0.25rem;
       }
 
       .signup__input {
         width: 100%;
+      }
+
+      .signup__error {
+        padding-left: 0;
       }
     }
 

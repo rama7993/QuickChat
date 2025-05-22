@@ -1,0 +1,90 @@
+<form
+  [formGroup]="profileForm"
+  (ngSubmit)="onSubmit()"
+  enctype="multipart/form-data"
+>
+  <div>
+    <label>First Name</label>
+    <input type="text" formControlName="firstName" />
+  </div>
+
+  <div>
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName" />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+  </div>
+
+  <div>
+    <label>Gender</label>
+    <select formControlName="gender">
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Bio</label>
+    <textarea formControlName="bio" rows="4"></textarea>
+  </div>
+
+  <div>
+    <label>Age</label>
+    <input type="number" formControlName="age" />
+  </div>
+
+  <div>
+    <label>Street</label>
+    <input type="text" formControlName="street" />
+  </div>
+
+  <div>
+    <label>City</label>
+    <input type="text" formControlName="city" />
+  </div>
+
+  <div>
+    <label>State</label>
+    <input type="text" formControlName="state" />
+  </div>
+
+  <div>
+    <label>ZIP</label>
+    <input type="text" formControlName="zip" />
+  </div>
+
+  <div>
+    <label>Active</label>
+    <input type="checkbox" formControlName="isActive" />
+  </div>
+
+  <div>
+    <label>Photo URL</label>
+    <input
+      type="text"
+      formControlName="photoUrl"
+      placeholder="https://example.com/photo.jpg"
+    />
+  </div>
+
+  <div>
+    <label>Or Upload Photo</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <div *ngIf="previewUrl">
+    <img [src]="previewUrl" alt="Preview" width="150" height="150" />
+  </div>
+
+  <button type="submit" [disabled]="profileForm.invalid">Update Profile</button>
+</form>

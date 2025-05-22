@@ -1,5 +1,11 @@
+@import "primeicons/primeicons.css";
+
+
 :root {
-  --primary: #211e37;
+  --primary: #2c0b3f;
+  --secondary: #2A092A;
+  --accent: #a44dca;
+  --hover: #350C35;
 }
 
 * {
@@ -10,17 +16,17 @@
   outline: none;
   border: none;
   text-decoration: none;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   transition: all 0.2s linear;
 }
 
 *::selection {
-  background: var(--primary);
+  background: var(--secondary);
   color: #fff;
 }
 
 html {
- // font-size: 62.5%; // 1rem = 10px
+  // font-size: 62.5%; // 1rem = 10px
   overflow-x: hidden;
   scroll-padding-top: 6.5rem;
   scroll-behavior: smooth;
@@ -72,5 +78,23 @@ select {
 
   &:hover {
     background-color: #18152b;
+  }
+
+  &:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+
+  span {
+    color: red;
+    margin-left: 0.25rem;
   }
 }

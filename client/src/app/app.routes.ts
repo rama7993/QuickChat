@@ -30,8 +30,15 @@ export const routes: Routes = [
       {
         path: 'forgot-password',
         loadComponent: () =>
-          import('./pages/auth/password/password.component').then(
-            (m) => m.PasswordComponent
+          import('./pages/auth/change-password/change-password.component').then(
+            (m) => m.ChangePasswordComponent
+          ),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./pages/auth/profile/profile.component').then(
+            (m) => m.ProfileComponent
           ),
       },
     ],
@@ -50,5 +57,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: '' },
+  // { path: '**', redirectTo: '' },
 ];
