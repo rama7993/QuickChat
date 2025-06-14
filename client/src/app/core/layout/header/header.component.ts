@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,56 +10,28 @@ import { MenuModule } from 'primeng/menu';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  fullName = '';
+  private router = inject(Router);
+  private authService = inject(AuthService);
   userImage = 'https://i.pravatar.cc/150?img=32';
-  userId = '682e1d12bd8776bf4e86c9ad';
+  showUserMenu = false;
+  currentUser = this.authService.currentUser;
 
-  userMenuItems: MenuItem[] = [
-    {
-      label: 'Profile',
-      icon: 'pi pi-user',
-      command: () => this.goToProfile(),
-    },
-    {
-      label: 'Logout',
-      icon: 'pi pi-sign-out',
-      command: () => this.logout(),
-    },
-  ];
-
-  constructor(private http: HttpClient, private router: Router) {}
-
-  ngOnInit(): void {
-    this.getUserDetails();
-  }
-
-  getUserDetails(): void {
-    this.http
-      .get<any>(`http://localhost:3000/api/users/${this.userId}`)
-      .subscribe({
-        next: (user: any) => {
-          console.log(user);
-          this.fullName = `${user.firstName} ${user.lastName}`;
-          if (user.avatarUrl) {
-            this.userImage = user.avatarUrl;
-          }
-        },
-        error: (err: Error) => {
-          console.error('Failed to fetch user:', err);
-        },
-      });
+  toggleUserMenu(): void {
+    this.showUserMenu = !this.showUserMenu;
   }
 
   goToProfile(): void {
+    this.showUserMenu = false;
     this.router.navigate(['/profile']);
   }
 
   logout(): void {
-    this.http.post('/api/auth/logout', {}).subscribe({
+    this.authService.logout().subscribe({
       next: () => {
+        this.showUserMenu = false;
         this.router.navigate(['/login']);
       },
-      error: (err: Error) => {
+      error: (err) => {
         console.error('Logout failed:', err);
       },
     });

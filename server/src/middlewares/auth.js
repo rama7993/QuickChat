@@ -28,6 +28,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
+    console.error("Auth error:", error.message);
     return res.status(400).send("Invalid token or user not authenticated.");
   }
 };

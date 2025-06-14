@@ -1,10 +1,37 @@
 const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema({
-  senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  content: String,
-  timestamp: { type: Date, default: Date.now },
+  sender: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  receiver: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Group",
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const messageModel = mongoose.model("Message", messageSchema);
-module.exports = messageModel;
+messageSchema.pre("save", function (next) {
+  if (!this.receiver && !this.group) {
+    return next(new Error("Either receiver or group must be specified."));
+  }
+  if (this.receiver && this.group) {
+    return next(new Error("Cannot have both receiver and group in message."));
+  }
+  next();
+});
+
+module.exports = mongoose.model("Message", messageSchema);

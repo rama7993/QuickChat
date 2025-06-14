@@ -7,6 +7,8 @@ const cors = require("cors");
 
 const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
+const chatRouter = require("./routes/messages");
+const groupRouter = require("./routes/groups");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,30 +26,16 @@ app.use(
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/messages", chatRouter);
+app.use("/api/groups", groupRouter);
 
 // HTTP Server
 const server = http.createServer(app);
-
 // Socket.IO Server
 const io = socketIO(server, {
-  cors: {
-    origin: "*",
-  },
+  cors: { origin: "*" },
 });
-
-// Socket Logic
-io.on("connection", (socket) => {
-  console.log("Client connected");
-
-  socket.on("chat message", async (msg) => {
-    console.log("Received from client:", msg);
-    io.emit("chat message", msg);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("Client disconnected");
-  });
-});
+require("./lib/socket")(io);
 
 // DB connection + server start
 connectDB()

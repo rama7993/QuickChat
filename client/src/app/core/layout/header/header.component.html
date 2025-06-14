@@ -9,20 +9,29 @@
       <span class="header__badge">3</span>
     </div>
 
-    <p-menu #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
-
     <div
       class="header__profile"
-      (click)="userMenu.toggle($event)"
+      (click)="toggleUserMenu()"
       style="cursor: pointer"
     >
-      <img src="https://i.pravatar.cc/150?img=32" alt="Profile" />
+      <img [src]="currentUser()?.photoUrl || userImage" alt="Profile" />
       <div class="header__user-info">
-        <span class="header__name">{{ fullName }}</span>
+        <span class="header__name">{{
+          currentUser()?.firstName + " " + currentUser()?.lastName
+        }}</span>
         <span class="header__role">
-          Admin <i class="pi pi-chevron-down"></i>
+          Account<i class="pi pi-chevron-down"></i>
         </span>
       </div>
     </div>
+
+    @if (showUserMenu) {
+    <div class="user-menu">
+      <ul>
+        <li (click)="goToProfile()"><i class="pi pi-user"></i> Profile</li>
+        <li (click)="logout()"><i class="pi pi-sign-out"></i> Logout</li>
+      </ul>
+    </div>
+    }
   </div>
 </div>

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,17 +15,23 @@ import {
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
   profileForm!: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
-
-  constructor(private fb: FormBuilder) {}
+  currentUser = this.authService.currentUser;
 
   ngOnInit() {
+    this.buildForm();
+    console.log(this.currentUser());
+    this.profileForm.patchValue(this.currentUser());
+  }
+
+  buildForm() {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
       gender: [''],
       bio: [''],
       age: [null, [Validators.min(18)]],
@@ -32,7 +39,6 @@ export class ProfileComponent {
       city: [''],
       state: [''],
       zip: [''],
-      isActive: [true],
       photoUrl: [''],
     });
   }
@@ -52,8 +58,19 @@ export class ProfileComponent {
   onSubmit() {
     if (this.profileForm.valid) {
       const formData = this.profileForm.value;
-      console.log('Form submitted:', formData);
-      // send to API
+      const userId = this.currentUser()?._id;
+
+      if (!userId) return;
+
+      this.authService.updateUserById(userId, formData).subscribe({
+        next: (updatedUser) => {
+          this.authService.updateUser(updatedUser);
+          console.log('User updated:', updatedUser);
+        },
+        error: (err) => {
+          console.error('Update failed', err);
+        },
+      });
     }
   }
 }

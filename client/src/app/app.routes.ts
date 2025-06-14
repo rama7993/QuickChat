@@ -34,13 +34,6 @@ export const routes: Routes = [
             (m) => m.ChangePasswordComponent
           ),
       },
-      {
-        path: 'profile',
-        loadComponent: () =>
-          import('./pages/auth/profile/profile.component').then(
-            (m) => m.ProfileComponent
-          ),
-      },
     ],
   },
   {
@@ -50,6 +43,13 @@ export const routes: Routes = [
         (m) => m.MainLayoutComponent
       ),
     children: [
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./pages/auth/profile/profile.component').then(
+            (m) => m.ProfileComponent
+          ),
+      },
       {
         path: 'chat',
         loadComponent: () =>

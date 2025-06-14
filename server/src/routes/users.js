@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const { authMiddleware } = require("../middlewares/auth");
 const { validateUser } = require("../utils/validation");
 
 /**
@@ -14,6 +15,14 @@ router.get("/", async (req, res) => {
   } catch (error) {
     res.status(400).send("Error: " + error.message);
   }
+});
+
+/**
+ * @route   GET /api/users/me
+ * @desc    Get current authenticated user
+ */
+router.get("/me", authMiddleware, async (req, res) => {
+  res.status(200).json(req.user);
 });
 
 /**

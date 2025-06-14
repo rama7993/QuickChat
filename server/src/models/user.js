@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "NodeJS_Practise";
-const RESET_TOKEN_EXPIRATION = "7d";
+require("dotenv").config();
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -17,12 +16,11 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
-    // username: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    //   trim: true,
-    // },
+    username: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
@@ -72,8 +70,8 @@ const userSchema = new Schema(
 
 userSchema.methods.getJWT = async function () {
   const user = this;
-  const token = await jwt.sign({ id: user._id }, SECRET_KEY, {
-    expiresIn: RESET_TOKEN_EXPIRATION,
+  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.RESET_TOKEN_EXPIRATION || "7d",
   });
   return token;
 };
