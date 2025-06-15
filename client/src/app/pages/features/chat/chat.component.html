@@ -23,6 +23,11 @@
 
     <div *ngIf="selectedUser" class="chat-section">
       <div class="chat-header">
+        <img
+          class="avatar"
+          [src]="selectedUser.photoUrl || defaultAvatar"
+          alt="avatar"
+        />
         <h4>{{ selectedUser.firstName }} {{ selectedUser.lastName }}</h4>
       </div>
 
@@ -59,7 +64,7 @@
         <!-- Typing Indicator -->
         <div class="typing-indicator" *ngIf="isTyping">
           <img
-            [src]="selectedUser?.photoUrl || typingAvatar"
+            [src]="selectedUser?.photoUrl || defaultAvatar"
             class="avatar"
             alt="typing"
           />
@@ -79,7 +84,9 @@
           (input)="handleTyping()"
           autocomplete="off"
         />
-        <button type="submit" [disabled]="!messageText.trim()">Send</button>
+        <button type="submit" class="btn" [disabled]="!messageText.trim()">
+          Send
+        </button>
       </form>
     </div>
   </div>

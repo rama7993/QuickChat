@@ -1,11 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { SocketService } from '../../core/services/socket/socket.service';
+import { SocketService } from '../../../core/services/socket/socket.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { FilterPipe } from '../../core/pipes/filter/filter.pipe';
-import { ChatService } from '../../core/services/chat/chat.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
+import { FilterPipe } from '../../../core/pipes/filter/filter.pipe';
+import { ChatService } from '../../../core/services/chat/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -26,9 +26,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   messageText = '';
   searchText = '';
-  currentUser = this.authService.currentUser; // function or signal depending on your authService implementation
+  currentUser = this.authService.currentUser;
   defaultAvatar = 'https://i.pravatar.cc/150?img=32';
-  typingAvatar = 'https://i.pravatar.cc/150?img=45';
   isTyping = false;
 
   private socketSubscription!: Subscription;

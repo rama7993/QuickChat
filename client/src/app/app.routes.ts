@@ -46,14 +46,14 @@ export const routes: Routes = [
       {
         path: 'profile',
         loadComponent: () =>
-          import('./pages/auth/profile/profile.component').then(
+          import('./pages/features/profile/profile.component').then(
             (m) => m.ProfileComponent
           ),
       },
       {
         path: 'chat',
         loadComponent: () =>
-          import('./pages/chat/chat.component').then((m) => m.ChatComponent),
+          import('./pages/features/chat/chat.component').then((m) => m.ChatComponent),
       },
     ],
   },

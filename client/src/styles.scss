@@ -1,11 +1,22 @@
 @import "primeicons/primeicons.css";
 
-
 :root {
   --primary: #2c0b3f;
-  --secondary: #2A092A;
+  --secondary: #2a092a;
   --accent: #a44dca;
-  --hover: #350C35;
+  --hover: #350c35;
+  --focus: #8e44ad;
+
+  --warning: #f1c40f;
+  --dark: #2c0b3f;
+  --light: #f8f9fa;
+
+  --primary-dark: #250825;
+  --primary-light: #3d78ba;
+  --background: #2a2874;
+
+  --text-light: #ffffff;
+  --text-dark: #1a1a1a;
 }
 
 * {
@@ -30,6 +41,13 @@ html {
   overflow-x: hidden;
   scroll-padding-top: 6.5rem;
   scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 
 a {

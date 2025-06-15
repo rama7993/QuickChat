@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use "sass:color";
 
 $primary: #3498db;
 
@@ -30,7 +30,7 @@ $primary: #3498db;
     border-radius: 0.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 650px;
+    max-width: 35rem;
   }
 
   &__heading {

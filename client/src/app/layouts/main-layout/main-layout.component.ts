@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../../core/layout/header/header.component';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { HeaderComponent } from '../../pages/features/header/header.component';
 
 @Component({
   selector: 'app-main-layout',

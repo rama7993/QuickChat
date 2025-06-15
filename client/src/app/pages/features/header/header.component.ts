@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +20,9 @@ export class HeaderComponent {
     this.showUserMenu = !this.showUserMenu;
   }
 
-  goToProfile(): void {
+  navTo(url: string): void {
     this.showUserMenu = false;
-    this.router.navigate(['/profile']);
+    this.router.navigate([]);
   }
 
   logout(): void {

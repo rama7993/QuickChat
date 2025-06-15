@@ -1,13 +1,13 @@
 <div class="header">
   <div class="header__main">
-    <h2>QuickChat</h2>
+    <h2 class="logo">Quick<span>Chat</span></h2>
   </div>
 
   <div class="header__actions">
-    <div class="header__notification">
+    <!-- <div class="header__notification">
       <i class="pi pi-bell"></i>
       <span class="header__badge">3</span>
-    </div>
+    </div> -->
 
     <div
       class="header__profile"
@@ -28,7 +28,8 @@
     @if (showUserMenu) {
     <div class="user-menu">
       <ul>
-        <li (click)="goToProfile()"><i class="pi pi-user"></i> Profile</li>
+        <li (click)="navTo('/profile')"><i class="pi pi-user"></i> Profile</li>
+        <li (click)="navTo('/chat')"><i class="pi pi-comment"></i> Chat</li>
         <li (click)="logout()"><i class="pi pi-sign-out"></i> Logout</li>
       </ul>
     </div>
