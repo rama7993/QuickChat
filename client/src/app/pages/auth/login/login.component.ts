@@ -8,12 +8,11 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { InputTextModule } from 'primeng/inputtext';
 import { AlertService } from '../../../core/services/alerts/alert.service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, InputTextModule],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -49,6 +48,7 @@ export class LoginComponent {
 
       this.authService.login(email, password).subscribe({
         next: (res) => {
+          localStorage.setItem('token', res.token);
           this.router.navigate(['/chat']);
         },
         error: (err) => {

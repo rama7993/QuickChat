@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuModule } from 'primeng/menu';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [MenuModule],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -22,7 +21,7 @@ export class HeaderComponent {
 
   navTo(url: string): void {
     this.showUserMenu = false;
-    this.router.navigate([]);
+    this.router.navigate([url]);
   }
 
   logout(): void {

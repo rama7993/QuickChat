@@ -58,8 +58,8 @@ export class SignupComponent {
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.error('Registration error:', err);
-          this.alertService.errorToaster(err.error || 'Registration failed');
+          console.error('Registration error:', err.error);
+          this.alertService.errorToaster(err.error.message || err.error || 'Registration failed');
         },
       });
     } else {
