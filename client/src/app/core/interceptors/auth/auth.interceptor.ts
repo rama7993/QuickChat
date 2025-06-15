@@ -1,20 +1,16 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { AlertService } from '../../services/alerts/alert.service';
+import { SafeStorageService } from '../../services/storage/safe-storage.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const platformId = inject(PLATFORM_ID);
-  const alertService = inject<AlertService>(AlertService);
+  const alertService = inject(AlertService);
   const router = inject(Router);
+  const storage = inject(SafeStorageService);
 
-  // Only access localStorage in the browser
-  const token = isPlatformBrowser(platformId)
-    ? localStorage.getItem('token')
-    : null;
+  const token = storage.get('token');
 
   const clonedReq = token
     ? req.clone({
@@ -25,9 +21,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(clonedReq).pipe(
     catchError((error) => {
       if (error.status === 401) {
-        if (isPlatformBrowser(platformId)) {
-          localStorage.removeItem('token');
-        }
+        storage.remove('token');
         alertService.errorToaster('Unauthorized: You have been logged out.');
         router.navigate(['/login']);
       }
