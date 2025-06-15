@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   apiUrl:
-    'https://quick-chat-vphs-4ywjherq5-rama-koti-reddys-projects.vercel.app/api',
+    'https://quick-chat-be.vercel.app/api',
   socketUrl:
-    'https://quick-chat-vphs-4ywjherq5-rama-koti-reddys-projects.vercel.app',
+    'https://quick-chat-be.vercel.app',
 };
